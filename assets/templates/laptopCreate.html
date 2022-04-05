@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Create New Laptop</h1>
+    </div>
+    <form action='.' method='POST'>
+      {% csrf_token %}
+      <div class = "fieldwrapper">
+        <label for = "{{form.laptopBrand.id_for_label }}">Laptop Brand:</label>
+        {{ form.laptopBrand }}
+      </div>
+      <div class = "fieldwrapper">
+        <label for = "{{form.laptopModel.id_for_label }}">Laptop Model:</label>
+        {{ form.laptopModel }}
+      </div>
+      <div class = "fieldwrapper">
+        <label for = "{{form.laptopSerial.id_for_label }}">Laptop Serial:</label>
+        {{ form.laptopSerial }}
+      </div>
+      <div class = "fieldwrapper">
+        <label for = "{{form.laptopMemory.id_for_label }}">Laptop Memory:</label>
+        {{ form.laptopMemory }}
+      </div>
+      <div class = "fieldwrapper">
+        <label for = "{{form.laptopLocation.id_for_label }}">Laptop Location:</label>
+        {{ form.laptopLocation }}
+      </div>
+      <button type = "submit" class = "btn btn-primary">Create Asset</button>
+    </form>
+    <br/>
+    {% include 'error.html' %}
+</div>
+
+{% endblock %}

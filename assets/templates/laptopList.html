@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="add_buttons">
+
+  <div class="button-group">
+    <a href="{% url 'laptopCreate' %}" class="btn btn-primary btn-md btn-trim float-right" role="button"> Create New</a>
+  </div>
+
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Asset ID</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Serial Number</th>
+      <th>Memory (GB)</th>
+      <th>Location</th>
+      <th>Checked out to</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    {% for laptop in laptopList %}
+
+    <tr>
+      <td>{{ laptop.pk }}
+      <td>{{ laptop.laptopBrand }}</td>
+      <td>{{ laptop.laptopModel }} </td>
+      <td>{{ laptop.laptopSerial }} </td>
+      <td>{{ laptop.laptopMemory }}</td>
+      <td>{{ laptop.laptopLocation }}</td>
+      <td>{{ laptop.laptopUser }}</td>
+
+      <td>
+          <a href="{% url 'laptopUpdate' laptop.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+          {% if laptop.laptopUser %}
+            <a href="{% url 'laptopCheckin' laptop.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Checkin</a>
+          {% else %}
+            <a href="{% url 'laptopCheckout' laptop.pk %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" > Checkout</a>
+          {% endif %}
+          {% if request.user.is_superuser%}
+            <a href="{% url 'laptopDelete' laptop.pk %}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+          {% endif %}
+      </td>
+
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

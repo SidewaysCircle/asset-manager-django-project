@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Checkout asset</h1>
+    </div>
+    <form action='.' method='POST'>
+      {% csrf_token %}
+      <div class = "fieldwrapper">
+          <h2> Check out Asset ID: {{laptop.pk}}</h2>
+        <label for = "{{form.laptopUser.id_for_label }}">New user ID: </label>
+        {{ form.laptopUser }}
+      </div>
+      <button type = "submit" class = "btn btn-primary">Checkout</button>
+      </div>
+    </form>
+    <br/>
+    {% include 'error.html' %}
+</div>
+
+{% endblock %}

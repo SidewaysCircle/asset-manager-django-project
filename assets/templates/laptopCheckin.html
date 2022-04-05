@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Check in asset</h1>
+    </div>
+    <form action='.' method='POST'>
+      {% csrf_token %}
+      <div class = "fieldwrapper">
+          <h2> Check in Asset ID: {{laptop.pk}}</h2>
+        <label for = "{{form.laptopLocation.id_for_label }}">Recipient Site: </label>
+        {{ form.laptopLocation }}
+        <p hidden>
+          <option disabled selected value> ---- </option>
+          {{form.laptopUser.}}</p> 
+      </div>
+      <button type = "submit" class = "btn btn-primary">Checkin</button>
+      </div>
+    </form>
+    <br/>
+    {% include 'error.html' %}
+</div>
+
+{% endblock %}
